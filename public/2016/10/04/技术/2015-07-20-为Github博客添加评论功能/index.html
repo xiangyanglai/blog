@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Github博客安装disqus评论插件 | dependmyse写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我们都知道github博客通常使用markdown标记语言进行编写的，速度快是其最大的特点，但是随之而来的是其功能上会受到一定的限制，比如评论功能。我一直认为写博客的目的主要有两种，其一在于希望能抒发自己的感情，享受知识在自己之间流淌的快感，再则就是希望与更多的有志之士一起交流，共同进步。
+博主本人在看到网上相关介绍github博客评论功能解决方案时大多提到的是采用disqus这个第三方的评论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github博客安装disqus评论插件">
+<meta property="og:url" content="http://yoursite.com/2016/10/04/技术/2015-07-20-为Github博客添加评论功能/index.html">
+<meta property="og:site_name" content="dependmyse写字的地方">
+<meta property="og:description" content="我们都知道github博客通常使用markdown标记语言进行编写的，速度快是其最大的特点，但是随之而来的是其功能上会受到一定的限制，比如评论功能。我一直认为写博客的目的主要有两种，其一在于希望能抒发自己的感情，享受知识在自己之间流淌的快感，再则就是希望与更多的有志之士一起交流，共同进步。
+博主本人在看到网上相关介绍github博客评论功能解决方案时大多提到的是采用disqus这个第三方的评论">
+<meta property="og:image" content="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_home.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_register.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_choice.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_code.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_html.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_result.png">
+<meta property="og:updated_time" content="2016-10-04T09:55:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Github博客安装disqus评论插件">
+<meta name="twitter:description" content="我们都知道github博客通常使用markdown标记语言进行编写的，速度快是其最大的特点，但是随之而来的是其功能上会受到一定的限制，比如评论功能。我一直认为写博客的目的主要有两种，其一在于希望能抒发自己的感情，享受知识在自己之间流淌的快感，再则就是希望与更多的有志之士一起交流，共同进步。
+博主本人在看到网上相关介绍github博客评论功能解决方案时大多提到的是采用disqus这个第三方的评论">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_home.png">
+  
+    <link rel="alternative" href="/atom.xml" title="dependmyse写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://tva2.sinaimg.cn/crop.0.0.180.180.180/7fc5275djw1e8qgp5bmzyj2050050aa8.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">向阳 赖</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">不断学习中</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/dependmyse" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/p/1005052143627101/home" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/dependmyse" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">向阳 赖</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://tva2.sinaimg.cn/crop.0.0.180.180.180/7fc5275djw1e8qgp5bmzyj2050050aa8.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">向阳 赖</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">不断学习中</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/dependmyse" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/p/1005052143627101/home" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/dependmyse" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-技术/2015-07-20-为Github博客添加评论功能" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Github博客安装disqus评论插件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<blockquote>
+<p><em>我们都知道github博客通常使用markdown标记语言进行编写的，速度快是其最大的特点，但是随之而来的是其功能上会受到一定的限制，比如评论功能。我一直认为写博客的目的主要有两种，其一在于希望能抒发自己的感情，享受知识在自己之间流淌的快感，再则就是希望与更多的有志之士一起交流，共同进步。</em></p>
+<p><em>博主本人在看到网上相关介绍github博客评论功能解决方案时大多提到的是采用disqus这个第三方的评论插件。但具体如何配置却解释的并不是很清晰，为了避免大家reinvent the whell，在此将disqus插件的详细安装过程做一记录，希望能够帮助到大家。</em></p>
+<hr>
+</blockquote>
+<h3 id="注册disqus账号"><a href="#注册disqus账号" class="headerlink" title="注册disqus账号"></a>注册disqus账号</h3><p>这一步需要注意的是，登陆成功以后的操作，如下图所示，disqus作为一个第三方的评论插件，为我们提供了完备的评论管理功能，我们可以看到所有人对我们托管的网站网页的评价，这里我已经将我的github博客托管在了disqus。正常来说，当我们新注册一个disqus账号的时候我们需要做如下步骤：</p>
+<p><img src="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_home.png" alt="登陆disqus主页面"></p>
+<p>####1.将我们的网站托管给disqus，如下图红色箭头所示，Add Disqus To Site</p>
+<a id="more"></a> 
+<ul>
+<li>在这里我们根据自己网站的情况，填写相应信息即可。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_register.png" alt="根据自己网站情况填写相应信息"></p>
+<ul>
+<li>点击完成以后会跳转到选择平台界面，在这里我们如果没有特殊需求，直接选择<em>universe code</em>选项即可</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_choice.png" alt="选择平台"></p>
+<ul>
+<li>进行到这一步，第一阶段就算完成了，我们获得了如下图所示的嵌入代码</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_code.png" alt="获得所需网页嵌入代码"></p>
+<p>###2.将我们第一步所获得的代码嵌入到我们的网页中就可以了</p>
+<p>构建github博客大家一般都会有自己的模板页，在博客模板页中，将第一步获得的评论所需代码放进去就好了。</p>
+<p><img src="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_html.png" alt="将网页代码放入到我们需要添加评论的页面中"></p>
+<p>####3.具体效果如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/dependmyse/dependmyse.github.io/master/img/my/disqus_result.png" alt="disqus插件显示效果"></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/04/技术/2015-07-20-为Github博客添加评论功能/" class="archive-article-date">
+  	<time datetime="2016-10-04T08:24:08.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-04</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网站/">网站</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/10/04/技术/2014-11-29-Something about building site/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Something about building site
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/04/生活/2014-11-16-Something/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Something</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="技术/2015-07-20-为Github博客添加评论功能" data-title="Github博客安装disqus评论插件" data-url="http://yoursite.com/2016/10/04/技术/2015-07-20-为Github博客添加评论功能/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dependmyse"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 向阳 赖
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/me/" style="font-size: 20px;">me</a> <a href="/tags/myself/" style="font-size: 10px;">myself</a> <a href="/tags/site/" style="font-size: 10px;">site</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感想/" style="font-size: 20px;">感想</a> <a href="/tags/网站/" style="font-size: 10px;">网站</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">爱编程，爱晚起，&lt;br&gt;偶尔也忙到深夜，&lt;br&gt;喜欢学习，努力工作，&lt;br&gt;也享受生活，&lt;br&gt;我酷爱技术，&lt;br&gt;崇尚简单的快乐和幸福，&lt;br&gt;我不是码农，我是程序员，&lt;br&gt;我和你一样，为理想而奋斗！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

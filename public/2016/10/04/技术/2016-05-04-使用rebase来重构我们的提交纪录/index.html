@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>使用rebase来重构我们的commit纪录 | dependmyse写字的地方</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如何使用rebase来重建我们的提交纪录
+当我们只是为了完成一个功能而进行多次提交时，必然会导致我们的提交纪录层次结构看起来很乱
+
+
+
+好的层次结构对于我们回头了解分析开发纪录相当必要
+
+具体操作步骤
+首先我们需要同步我们本地的提交纪录 1git pull --rebase origin master">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用rebase来重构我们的commit纪录">
+<meta property="og:url" content="http://yoursite.com/2016/10/04/技术/2016-05-04-使用rebase来重构我们的提交纪录/index.html">
+<meta property="og:site_name" content="dependmyse写字的地方">
+<meta property="og:description" content="如何使用rebase来重建我们的提交纪录
+当我们只是为了完成一个功能而进行多次提交时，必然会导致我们的提交纪录层次结构看起来很乱
+
+
+
+好的层次结构对于我们回头了解分析开发纪录相当必要
+
+具体操作步骤
+首先我们需要同步我们本地的提交纪录 1git pull --rebase origin master">
+<meta property="og:image" content="http://imglf1.nosdn.127.net/img/NFdMOFN4a0QzVTdPNEk3eFBYcHpIOWpBNUZrNUdLSUJubHBoYzc2cExXK29QeFkxanUvVXF3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg">
+<meta property="og:updated_time" content="2016-10-04T09:50:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用rebase来重构我们的commit纪录">
+<meta name="twitter:description" content="如何使用rebase来重建我们的提交纪录
+当我们只是为了完成一个功能而进行多次提交时，必然会导致我们的提交纪录层次结构看起来很乱
+
+
+
+好的层次结构对于我们回头了解分析开发纪录相当必要
+
+具体操作步骤
+首先我们需要同步我们本地的提交纪录 1git pull --rebase origin master">
+<meta name="twitter:image" content="http://imglf1.nosdn.127.net/img/NFdMOFN4a0QzVTdPNEk3eFBYcHpIOWpBNUZrNUdLSUJubHBoYzc2cExXK29QeFkxanUvVXF3PT0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="dependmyse写字的地方" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://tva2.sinaimg.cn/crop.0.0.180.180.180/7fc5275djw1e8qgp5bmzyj2050050aa8.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">向阳 赖</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">不断学习中</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/dependmyse" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/p/1005052143627101/home" title="weibo">weibo</a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/dependmyse" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">向阳 赖</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://tva2.sinaimg.cn/crop.0.0.180.180.180/7fc5275djw1e8qgp5bmzyj2050050aa8.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">向阳 赖</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">不断学习中</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/dependmyse" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/p/1005052143627101/home" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/dependmyse" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-技术/2016-05-04-使用rebase来重构我们的提交纪录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用rebase来重构我们的commit纪录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="如何使用rebase来重建我们的提交纪录"><a href="#如何使用rebase来重建我们的提交纪录" class="headerlink" title="如何使用rebase来重建我们的提交纪录"></a>如何使用rebase来重建我们的提交纪录</h3><ul>
+<li>当我们只是为了完成一个功能而进行多次提交时，必然会导致我们的提交纪录层次结构看起来很乱</li>
+</ul>
+<p><img src="http://imglf1.nosdn.127.net/img/NFdMOFN4a0QzVTdPNEk3eFBYcHpIOWpBNUZrNUdLSUJubHBoYzc2cExXK29QeFkxanUvVXF3PT0.png?imageView&amp;thumbnail=500x0&amp;quality=96&amp;stripmeta=0&amp;type=jpg" alt="未经处理的commit效果图"></p>
+<ul>
+<li>好的层次结构对于我们回头了解分析开发纪录相当必要</li>
+</ul>
+<h3 id="具体操作步骤"><a href="#具体操作步骤" class="headerlink" title="具体操作步骤"></a>具体操作步骤</h3><ol>
+<li>首先我们需要同步我们本地的提交纪录 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull --rebase origin master</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a> 
+<ol>
+<li><p>将多个commit合并成单个，可以重写commit注释</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rebase -i HEAD~n (n为具体需要合并的commit个数，依照具体情况而定)</div></pre></td></tr></table></figure>
+<ul>
+<li>在此步中我们需要来修正我们rebase过程中产生的一些错误</li>
+<li>在rebase过程中我们需要根据具体情况来决定时–abort还是continue</li>
+<li>如果有冲突的话我们一半会进入一个中间版本的过程中，我们可以随时通过git rebase –abort来结束rebase过程</li>
+<li>如果在rebase过程中我们可以通过修改完confilict以后我们需要用git add confictfile</li>
+</ul>
+</li>
+<li><p>最后的最后我们需要将我们本地修改好的纪录同步到远程</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git push -f</div><div class="line">如果出错，则说明与远端已经分离了，则可以采用：</div><div class="line">rm .git/refs/heads/origin/branch-name</div><div class="line">然后重新</div><div class="line">git branch --set-upstream-to=origin/branchname branch name</div><div class="line">然后git push －f</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/10/04/技术/2016-05-04-使用rebase来重构我们的提交纪录/" class="archive-article-date">
+  	<time datetime="2016-10-04T08:24:08.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-04</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-price-tags"></i>
+	<a class="article-category-link" href="/categories/技术/">技术</a>
+	</div>
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/10/04/vim配置文件备份/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vim配置文件备份
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/04/叩问/2014-11-20-Something I want to say to myself/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">A letter to myself</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="技术/2016-05-04-使用rebase来重构我们的提交纪录" data-title="使用rebase来重构我们的commit纪录" data-url="http://yoursite.com/2016/10/04/技术/2016-05-04-使用rebase来重构我们的提交纪录/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dependmyse"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 向阳 赖
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/life/" style="font-size: 10px;">life</a> <a href="/tags/me/" style="font-size: 20px;">me</a> <a href="/tags/myself/" style="font-size: 10px;">myself</a> <a href="/tags/site/" style="font-size: 10px;">site</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/情感/" style="font-size: 10px;">情感</a> <a href="/tags/感想/" style="font-size: 20px;">感想</a> <a href="/tags/网站/" style="font-size: 10px;">网站</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">爱编程，爱晚起，&lt;br&gt;偶尔也忙到深夜，&lt;br&gt;喜欢学习，努力工作，&lt;br&gt;也享受生活，&lt;br&gt;我酷爱技术，&lt;br&gt;崇尚简单的快乐和幸福，&lt;br&gt;我不是码农，我是程序员，&lt;br&gt;我和你一样，为理想而奋斗！</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
